@@ -1,0 +1,55 @@
+
+Field Definitions:
+
+    msg_directory: Mals is split into the following directories:
+	
+        ActorMsg    
+        ChallengeMsg
+        EventFlowMsg
+        LayoutMsg   
+        LocationMsg 
+        NpcTerrorMsg
+        ShoutMsg    
+        StaffRollMsg
+        StaticMsg   
+		
+        Each one has a set of its own .msbt files
+
+    file_name: This is the .msbt file with the ending .msbt removed
+
+    entry_name: This is the entry in the .msbt, i.e. Talk_0051
+
+    entry_name: This is the combination of the full text in the message entry, minus the control changes (i.e. text color, font, etc.)
+
+
+Designed to make it easier to look up which .msbt file holds a particular text, either from an NPC, signboard, tip, etc.
+
+This is helpful for seeing text in game, then looking up the message file. Alternatively used in conjunction with my event flows dump, in finding where a particular text or MessageId event is stored (Message IDs can be searced in the event data with the file_name and entry_name fields.
+
+
+For example, seeing a mini-game with the text entries of:
+
+    I don't believe this... How is a score like
+    that even possible?!I've never seen anyone get so many in
+    before! There's clearly way more to you
+    Hylians than I thought.I still have a long way to go before I can
+    achieve anything as good.You deserve a real reward for putting on
+    such an incredible show. Take this!
+
+Searching some strings from that text, we'll find a message entry in the this message spreadsheet like this:
+
+    file_name: Basketball_MiniGame
+    entry_name: Talk_0024
+
+Searching the event spreadsheet, we can search for this parameter value:
+
+	EventFlowMsg/Basketball_MiniGame:Talk_0024
+
+Now we can draw a line from mini-game text in-game, to its message file, and then to its EventFlow.
+
+
+Hope this is helpful. I know the fields are limited to the bare minimum. I'll look to adding more data as the parsing tools are developed further.
+
+
+*** Huge credit and Thank You to Arch Leaders for releasing an msbt_to_yaml.exe converter that was reliable to use from the command line!
+
